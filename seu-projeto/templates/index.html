@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Loja Makeup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9e0f7;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+ 
+    header {
+      background: #d881d8;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+ 
+    .container {
+      width: 90%;
+      margin: 30px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+ 
+    .produto {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      width: 200px;
+      background: #fff;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      cursor: pointer;
+    }
+ 
+    .produto img {
+      max-width: 100%;
+      border-radius: 4px;
+    }
+ 
+    .produto h3 {
+      margin: 10px 0 5px;
+    }
+ 
+    .produto p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Loja Makeup</h1>
+  </header>
+ 
+  <div class="container">
+    {% if produtos %}
+      {% for p in produtos %}
+        <div class="produto">
+          <img src="/static/imagens/{{ p.imagem }}" alt="{{ p.nome }}">
+          <h3>{{ p.nome }}</h3>
+          <p>{{ p.descricao }}</p>
+          <p>R$ {{ ('%.2f'|format(p.preco)).replace('.', ',') }}</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Nenhum produto encontrado</p>
+    {% endif %}
+  </div>
+</body>
+</html>
